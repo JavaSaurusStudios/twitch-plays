@@ -35,6 +35,7 @@ function ActivateFunctions() {
 }
 
 function fireKey(key) {
-    keyDown(key);
+    var keyEvent = new KeyboardEvent('keydown', { key });
+    keyDown(keyEvent);
     const myTimeout = setTimeout(keyUp(key), 125);
 } 
