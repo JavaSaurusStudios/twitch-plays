@@ -7,6 +7,9 @@ function InitIRC() {
     GAME = urlParams.get('game');
     ActivateFunctions();
     ComfyJS.Init(channel, oath);
+
+    //Check if this is required :
+    initEmulator();
 }
 
 function ActivateFunctions() {
