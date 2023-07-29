@@ -14,7 +14,7 @@ function InitIRC() {
 
 function ActivateFunctions() {
     ComfyJS.onChat = (user, message, flags, self, extra) => {
-        var input = message.toUpper();
+        var input = message.toUpperCase();
         if (keys.hasOwnProperty(input)) {
             fireKey(keys[input]);
         }
