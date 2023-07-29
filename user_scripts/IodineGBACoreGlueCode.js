@@ -243,7 +243,7 @@ function registerGUIEvents() {
     addEvent("keyup", document, keyUpPreprocess);
     addEvent("unload", window, ExportSave);
     Iodine.attachSpeedHandler(function (speed) {
-        document.title = games[location.hash.substr(1)] + " - " + speed;
+        document.title = games[GAME] + " - " + speed;
     });
 }
 function lowerVolume() {
