@@ -186,7 +186,9 @@ var Blitter = null;
 var Mixer = null;
 var MixerInput = null;
 var timerID = null;
-window.onload = function () {
+window.onload = initEmulator();
+
+function initEmulator() {
     if (!games[GAME]) {
         alert("Invalid game request!");
         return;
@@ -206,6 +208,7 @@ window.onload = function () {
     //Download the BIOS:
     downloadBIOS();
 }
+    
 function downloadBIOS() {
     downloadFile("Binaries/gba_bios.bin", registerBIOS);
 }
