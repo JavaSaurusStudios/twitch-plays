@@ -189,10 +189,6 @@ var timerID = null;
 window.onload = initEmulator();
 
 function initEmulator() {
-    if (!games[GAME]) {
-        alert("Invalid game request!");
-        return;
-    }
     //Initialize Iodine:
     Iodine = new GameBoyAdvanceEmulator();
     //Initialize the graphics:
