@@ -36,7 +36,6 @@ function ActivateFunctions() {
 
 function fireKey(key) {
     console.log("Pressing "+key);
-    var keyEvent = new KeyboardEvent('keydown', { key });
-    keyDown(keyEvent);
-    const myTimeout = setTimeout(keyUp(key), 125);
+    Iodine.keyDown(key | 0);
+    const myTimeout = setTimeout(Iodine.keyUp(key | 0), 125);
 } 
