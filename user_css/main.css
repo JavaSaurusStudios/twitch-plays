@@ -26,3 +26,21 @@ span {
     font-family: monospace;
     display:none;
 }
+textarea{
+    background-color: rgba(0, 0, 0, 0); 
+    border-color: rgba(0, 0, 0, 0);
+    color: brown;
+    border:none;  
+    overflow:hidden;
+    resize: none;
+    width:640px;
+    height: 90%;
+    position:fixed;
+    top:20px;
+    left:20px;
+    font-size : 24px;
+    font-family: 'PressStart2PRegular';
+    font-weight: normal;
+    font-style: normal;
+    line-height:150%;
+}
