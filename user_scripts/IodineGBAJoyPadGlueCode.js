@@ -32,6 +32,7 @@ var keyZones = [
                 [65]
 ];
 function keyDown(e) {
+ console.log(e + "--> down ");
     var keyCode = e.keyCode | 0;
     for (var keyMapIndex = 0; (keyMapIndex | 0) < 10; keyMapIndex = ((keyMapIndex | 0) + 1) | 0) {
         var keysMapped = keyZones[keyMapIndex | 0];
@@ -47,6 +48,7 @@ function keyDown(e) {
     }
 }
 function keyUp(keyCode) {
+  console.log(keyCode + "--> up ");
     keyCode = keyCode | 0;
     for (var keyMapIndex = 0; (keyMapIndex | 0) < 10; keyMapIndex = ((keyMapIndex | 0) + 1) | 0) {
         var keysMapped = keyZones[keyMapIndex | 0];
@@ -59,6 +61,7 @@ function keyUp(keyCode) {
     }
 }
 function keyUpPreprocess(e) {
+   console.log(e + "--> preprocess ");
     var keyCode = e.keyCode | 0;
     switch (keyCode | 0) {
         case 68:
