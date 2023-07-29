@@ -1,11 +1,13 @@
-html, body {
+html,
+body {
     padding: 0;
     margin: 0;
     width: 100%;
     height: 100%;
     cursor: none;
-    background:rgb(248, 237, 212);
+    background: rgb(248, 237, 212);
 }
+
 canvas {
     position: absolute;
     top: 0;
@@ -13,6 +15,7 @@ canvas {
     width: 100%;
     height: 100%;
 }
+
 span {
     color: blue;
     bottom: 0px;
@@ -24,23 +27,35 @@ span {
     text-align: right;
     vertical-align: bottom;
     font-family: monospace;
-    display:none;
+    display: none;
 }
-textarea{
-    background-color: rgba(0, 0, 0, 0); 
-    border-color: rgba(0, 0, 0, 0);
-    color: brown;
-    border:none;  
-    overflow:hidden;
+
+textarea {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: white;
+    border: none;
+    overflow: hidden;
     resize: none;
-    width:640px;
-    height: 90%;
-    position:fixed;
-    top:20px;
-    left:20px;
-    font-size : 24px;
+    width: 640px;
+    height: 25%;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    font-size: 24px;
     font-family: 'PressStart2PRegular';
     font-weight: normal;
     font-style: normal;
-    line-height:150%;
+    line-height: 150%;
+    -webkit-text-stroke: .5px black;
+}
+
+/* CSS to style the text area and the fade-out effect */
+.fade-in {
+    opacity: 1;
+    transition: opacity 3.5s ease;
+}
+
+.fade-out {
+    opacity: 0;
 }

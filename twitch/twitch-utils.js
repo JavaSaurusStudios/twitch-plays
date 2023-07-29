@@ -1,5 +1,8 @@
 var GAME;
 
+// JavaScript to handle fading out the text area after 10 seconds of inactivity
+let typingTimer;
+
 const keys = {
     "A": 0,
     "B": 1,
@@ -39,27 +42,43 @@ function simulateKeyPress(x) {
     setTimeout(() => Iodine.keyUp(keys[x]), 150);
 }
 
-function addToTextLog(line){
-    const textarea = document.getElementById('scrollingTextarea');
-
+function addToTextLog(line) {
+    var textarea = document.getElementById('scrollingTextarea');
     // Split the textarea content into lines
     const lines = textarea.value.split('\n');
-
     // Add the new line to the end
     lines.push(line);
-
     // If the number of lines exceeds the visible rows, remove the first line
     const maxVisibleRows = Math.floor(textarea.clientHeight / 20); // Assuming each row is around 20px
     if (lines.length > maxVisibleRows) {
-      lines.shift();
+        lines.shift();
     }
-
     // Join the lines and set the updated content to the textarea
     textarea.value = lines.join('\n');
-
     // Scroll to the bottom after updating the content
     textarea.scrollTop = textarea.scrollHeight;
-  }
+    // Initial timer setup
+    resetTextArea();
+}
+
+
+function resetTimer() {
+    if (typingTimer) {
+        clearTimeout(typingTimer);
+    }
+    typingTimer = setTimeout(fadeOutTextArea, 2000); // 10 seconds
+}
+
+function fadeOutTextArea() {
+    var textArea = document.getElementById('scrollingTextarea');
+    textArea.classList.add('fade-out');
+    textArea.value = "";
+}
+
+function resetTextArea() {
+    document.getElementById('scrollingTextarea').classList.remove('fade-out');
+    resetTimer();
+}
 
 
 
