@@ -211,7 +211,7 @@ function downloadBIOS() {
 }
 function registerBIOS() {
     processDownload(this, attachBIOS);
-    downloadROM('pokemonred');
+    downloadROM("pokemonred");
 }
 function downloadROM(gamename) {
     Iodine.pause();
