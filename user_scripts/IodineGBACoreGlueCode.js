@@ -187,7 +187,7 @@ var Mixer = null;
 var MixerInput = null;
 var timerID = null;
 window.onload = function () {
-    if (!games[location.hash.substr(1)]) {
+    if (!games[GAME]) {
         alert("Invalid game request!");
         return;
     }
