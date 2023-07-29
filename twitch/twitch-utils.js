@@ -40,12 +40,12 @@ function fireKey(key) {
 } 
 
 function SimulateKeyDown(key){
-    var evt_down = new KeyboardEvent('keydown', {'keyCode':key, 'which':key}; 
+    var evt_down = new KeyboardEvent('keydown', {'keyCode':key, 'which':key}); 
     document.dispatchEvent (evt_down); 
 }
 
 function SimulateKeyUp(key){
-    var evt_up = new KeyboardEvent('keyup', {'keyCode':key, 'which':key}; 
+    var evt_up = new KeyboardEvent('keyup', {'keyCode':key, 'which':key}); 
     document.dispatchEvent (evt_up); 
 }
 
