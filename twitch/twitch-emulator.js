@@ -1,4 +1,3 @@
-const el = document.getElementById("emulator_target");
 var keys = {
     "A": 88,
     "B": 90,
@@ -12,6 +11,7 @@ var keys = {
     "L": 65               //A:
 };
 function fireKey(key) {
+    el = document.getElementById("emulator_target");
     //Set key to corresponding code. This one is set to the left arrow key.
     if (document.createEvent) {
         var eventObj = document.createEvent("Events");
