@@ -13,12 +13,10 @@ function InitIRC() {
 }
 
 function ActivateFunctions() {
-    ComfyJS.onCommand += (user, command, message, flags, extra) => {
-        if (command === 'move') {
-            var input = message.toUpper();
-            if (keys.hasOwnProperty(input)) {
-                fireKey(keys[input]);
-            }
+    ComfyJS.onChat = (user, message, flags, self, extra) => {
+        var input = message.toUpper();
+        if (keys.hasOwnProperty(input)) {
+            fireKey(keys[input]);
         }
     }
 }
