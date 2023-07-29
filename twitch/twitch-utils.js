@@ -1,16 +1,16 @@
 var GAME;
 
 const keys = {
-    "A": 88,
-    "B": 90,
-    "SEL": 16,
-    "START": 13,
-    "RIGHT": 39,
-    "LEFT": 37,
-    "UP": 38,
-    "DOWN": 40,
-    "R": 83,
-    "L": 65               //A:
+    "A": 0,
+    "B": 1,
+    "SEL": 2,
+    "START": 3,
+    "RIGHT": 4,
+    "LEFT": 5,
+    "UP": 6,
+    "DOWN": 7,
+    "R": 8,
+    "L": 9               //A:
 };
 
 function InitIRC() {
@@ -21,7 +21,6 @@ function InitIRC() {
     ActivateFunctions();
     ComfyJS.Init(channel, oath);
 
-    //Check if this is required :
     initEmulator();
 }
 
@@ -29,13 +28,16 @@ function ActivateFunctions() {
     ComfyJS.onChat = (user, message, flags, self, extra) => {
         var input = message.toUpperCase();
         if (keys.hasOwnProperty(input)) {
-            fireKey(keys[input]);
+            showTempString(user + " : " + input);
+            simulateKeyPress(input);
         }
     }
 }
 
-function fireKey(key) {
-    console.log("Pressing "+key);
-    Iodine.keyDown(key | 0);
-    const myTimeout = setTimeout(Iodine.keyUp(key | 0), 125);
-} 
+function simulateKeyPress(x) {
+    Iodine.keyDown(keys[x]);
+    setTimeout(() => Iodine.keyUp(keys[x]), 150);
+}
+
+
+

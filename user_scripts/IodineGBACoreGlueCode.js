@@ -210,13 +210,12 @@ function downloadBIOS() {
 }
 function registerBIOS() {
     processDownload(this, attachBIOS);
-    console.log("Loading "+GAME);
-    downloadROM(GAME);
+    downloadROM();
 }
-function downloadROM(gamename) {
+function downloadROM() {
     Iodine.pause();
-    showTempString("Downloading \"" + games[gamename] + ".\"");
-    downloadFile("Binaries/" + gamename + ".gba", registerROM);
+    showTempString("Downloading Game...");
+    downloadFile("Binaries/pokemonred.gba", registerROM);
 }
 function registerROM() {
     clearTempString();

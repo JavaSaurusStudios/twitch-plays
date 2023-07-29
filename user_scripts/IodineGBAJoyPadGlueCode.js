@@ -10,35 +10,36 @@
  */
 var keyZones = [
     //Use this to control the key mapping:
-                //A:
-                [88],
-                //B:
-                [90],
-                //Select:
-                [16],
-                //Start:
-                [13],
-                //Right:
-                [39],
-                //Left:
-                [37],
-                //Up:
-                [38],
-                //Down:
-                [40],
-                //R:
-                [83],
-                //L:
-                [65]
+    //A:
+    [88],
+    //B:
+    [90],
+    //Select:
+    [16],
+    //Start:
+    [13],
+    //Right:
+    [39],
+    //Left:
+    [37],
+    //Up:
+    [38],
+    //Down:
+    [40],
+    //R:
+    [83],
+    //L:
+    [65]
 ];
 function keyDown(e) {
- console.log(e + "--> down ");
+    console.log(keyMapIndex);
     var keyCode = e.keyCode | 0;
     for (var keyMapIndex = 0; (keyMapIndex | 0) < 10; keyMapIndex = ((keyMapIndex | 0) + 1) | 0) {
         var keysMapped = keyZones[keyMapIndex | 0];
         var keysTotal = keysMapped.length | 0;
         for (var matchingIndex = 0; (matchingIndex | 0) < (keysTotal | 0); matchingIndex = ((matchingIndex | 0) + 1) | 0) {
             if ((keysMapped[matchingIndex | 0] | 0) == (keyCode | 0)) {
+                console.log(keyMapIndex + " pushed");
                 Iodine.keyDown(keyMapIndex | 0);
                 if (e.preventDefault) {
                     e.preventDefault();
@@ -48,20 +49,19 @@ function keyDown(e) {
     }
 }
 function keyUp(keyCode) {
-  console.log(keyCode + "--> up ");
     keyCode = keyCode | 0;
     for (var keyMapIndex = 0; (keyMapIndex | 0) < 10; keyMapIndex = ((keyMapIndex | 0) + 1) | 0) {
         var keysMapped = keyZones[keyMapIndex | 0];
         var keysTotal = keysMapped.length | 0;
         for (var matchingIndex = 0; (matchingIndex | 0) < (keysTotal | 0); matchingIndex = ((matchingIndex | 0) + 1) | 0) {
             if ((keysMapped[matchingIndex | 0] | 0) == (keyCode | 0)) {
+                console.log(keyMapIndex + " released");
                 Iodine.keyUp(keyMapIndex | 0);
             }
         }
     }
 }
 function keyUpPreprocess(e) {
-   console.log(e + "--> preprocess ");
     var keyCode = e.keyCode | 0;
     switch (keyCode | 0) {
         case 68:
