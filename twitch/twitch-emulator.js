@@ -10,17 +10,18 @@ var keys = {
     "R": 83,
     "L": 65               //A:
 };
+
 function fireKey(key) {
-    el = document.getElementById("emulator_target");
-    if(!el){
-        console.log("Waiting for element to load");
-    }else{    
-        //Set key to corresponding code. This one is set to the left arrow key.
-    if (document.createEvent) {
-        var eventObj = document.createEvent("Events");
-        eventObj.initEvent("keydown", true, true);
-        eventObj.which = key;
-        el.dispatchEvent(eventObj);
-    }
-    }
+    SimulateKeyDown(key);
+    const myTimeout = setTimeout(SimulateKeyUp(key), 125);
 } 
+
+function SimulateKeyDown(key){
+    var evt_down = new KeyboardEvent('keydown', {'keyCode':key, 'which':key}; 
+    document.dispatchEvent (evt_down); 
+}
+
+function SimulateKeyUp(key){
+    var evt_up = new KeyboardEvent('keyup', {'keyCode':key, 'which':key}; 
+    document.dispatchEvent (evt_up); 
+}
