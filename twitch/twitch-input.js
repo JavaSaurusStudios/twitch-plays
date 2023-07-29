@@ -1,4 +1,4 @@
-var collectionInterval =5000;
+var collectionInterval = 5000;
 
 var userInputData = {
     "A": 0,
@@ -29,12 +29,12 @@ function CollectInput() {
         }
     }
 
-    if (mostPrevalentInput === undefined) {
+    if (maxCount == 0) {
         var randoms = ["RIGHT", "LEFT", "UP", "DOWN", "A", "B"];
         mostPrevalentInput = randoms[Math.floor(Math.random() * randoms.length)];
     }
-
     console.log(mostPrevalentInput + " was selected");
+
     simulateKeyPress(mostPrevalentInput);
     ClearInputData();
 }
