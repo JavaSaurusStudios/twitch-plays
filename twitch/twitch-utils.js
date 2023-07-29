@@ -1,7 +1,10 @@
+var GAME;
+
 function InitIRC() {
     const urlParams = new URL(window.location.toLocaleString()).searchParams;
     const channel = urlParams.get('channel');
     const oath = urlParams.get('oauth');
+    GAME = urlParams.get('game');
     ActivateFunctions();
     ComfyJS.Init(channel, oath);
 }
