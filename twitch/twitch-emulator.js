@@ -12,11 +12,15 @@ var keys = {
 };
 function fireKey(key) {
     el = document.getElementById("emulator_target");
-    //Set key to corresponding code. This one is set to the left arrow key.
+    if(!el){
+        console.log("Waiting for element to load");
+    }else{    
+        //Set key to corresponding code. This one is set to the left arrow key.
     if (document.createEvent) {
         var eventObj = document.createEvent("Events");
         eventObj.initEvent("keydown", true, true);
         eventObj.which = key;
         el.dispatchEvent(eventObj);
+    }
     }
 } 
