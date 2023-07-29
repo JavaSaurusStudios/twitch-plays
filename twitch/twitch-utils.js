@@ -1,6 +1,6 @@
 var GAME;
 
-var keys = {
+const keys = {
     "A": 88,
     "B": 90,
     "SEL": 16,
