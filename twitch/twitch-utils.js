@@ -1,6 +1,5 @@
 var GAME;
-
-// JavaScript to handle fading out the text area after 10 seconds of inactivity
+var saveStateManager;
 let typingTimer;
 
 const keys = {
@@ -13,26 +12,34 @@ const keys = {
     "UP": 6,
     "DOWN": 7,
     "R": 8,
-    "L": 9               //A:
+    "L": 9
 };
 
 function InitIRC() {
     const urlParams = new URL(window.location.toLocaleString()).searchParams;
     const channel = urlParams.get('channel');
     const oath = urlParams.get('oauth');
+
+    if (urlParams.has('collect-time')) {
+        collectionInterval = urlParams.get('collect-time')*1000;
+    }
+
     GAME = urlParams.get('game');
     ActivateFunctions();
     ComfyJS.Init(channel, oath);
-
     initEmulator();
+    saveStateManager = new SaveStateManager(Iodine);
+    InitUserInput();
 }
 
 function ActivateFunctions() {
     ComfyJS.onChat = (user, message, flags, self, extra) => {
         var input = message.toUpperCase();
         if (keys.hasOwnProperty(input)) {
-            addToTextLog(user + " : " + input);
-            simulateKeyPress(input);
+            //addToTextLog(user + " : " + input);
+            //simulateKeyPress(input);
+            userInputData[input]++;
+            updateInputTextLog();
         }
     }
 }
@@ -40,6 +47,22 @@ function ActivateFunctions() {
 function simulateKeyPress(x) {
     Iodine.keyDown(keys[x]);
     setTimeout(() => Iodine.keyUp(keys[x]), 150);
+}
+
+function updateInputTextLog() {
+    var textarea = document.getElementById('scrollingTextarea');
+    textarea.value = "";
+    // Add the new line to the end
+    let lines = [];
+    for (let k in sortValues(userInputData)) {
+        lines.push(k + "\t" + userInputData[k]);
+    }
+    // Join the lines and set the updated content to the textarea
+    textarea.value = lines.join('\n');
+    // Scroll to the bottom after updating the content
+    textarea.scrollTop = textarea.scrollHeight;
+    // Initial timer setup
+    // resetTextArea();
 }
 
 function addToTextLog(line) {
@@ -61,7 +84,6 @@ function addToTextLog(line) {
     resetTextArea();
 }
 
-
 function resetTimer() {
     if (typingTimer) {
         clearTimeout(typingTimer);
@@ -80,5 +102,17 @@ function resetTextArea() {
     resetTimer();
 }
 
+function sortValues(toSort) {
+
+    // Step 1: Convert the object to an array of key-value pairs
+    const keyValueArray = Object.entries(toSort);
+
+    // Step 2: Sort the array by the values (in ascending order)
+    keyValueArray.sort((a, b) => b[1] - a[1]);
+
+    // Step 3: Convert the sorted array back to an object (if needed)
+    return Object.fromEntries(keyValueArray);
+
+}
 
 

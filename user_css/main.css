@@ -37,11 +37,11 @@ textarea {
     border: none;
     overflow: hidden;
     resize: none;
-    width: 640px;
-    height: 25%;
+    width: 256px;
+    height: 356px;
     position: fixed;
-    bottom: 20px;
-    left: 20px;
+    left:15px;
+    bottom: 0px;
     font-size: 24px;
     font-family: 'PressStart2PRegular';
     font-weight: normal;
