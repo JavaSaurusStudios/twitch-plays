@@ -51,20 +51,11 @@ function ActivateFunctions() {
 */
 }
 
-function simulateKeyPress(x) {
+function simulateKeyPress(x, amount) {
     Iodine.keyDown(keys[x]);
-    setTimeout(() => { Iodine.keyUp(keys[x]); ClearInputData() }, 150);
+    setTimeout(() => { Iodine.keyUp(keys[x]); ClearInputData() }, 150 * amount);
 }
 
-function simulateKeyPresses(x, amount) {
-    if (amount > 0) {
-        setTimeout(() => {
-            simulateKeyPress(x), amount--;
-        }, 150);
-    } else {
-        ClearInputData();
-    }
-}
 
 function updateInputTextLog() {
     var textarea = document.getElementById('scrollingTextarea');
