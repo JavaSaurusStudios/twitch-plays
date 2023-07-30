@@ -1,7 +1,7 @@
 var GAME;
 var saveStateManager;
 let typingTimer;
-
+//https://twitchapps.com/tmi/
 const keys = {
     "A": 0,
     "B": 1,
@@ -21,7 +21,7 @@ function InitIRC() {
     const oath = urlParams.get('oauth');
 
     if (urlParams.has('collect-time')) {
-        collectionInterval = urlParams.get('collect-time')*1000;
+        collectionInterval = urlParams.get('collect-time') * 1000;
     }
 
     GAME = urlParams.get('game');
@@ -42,6 +42,13 @@ function ActivateFunctions() {
             updateInputTextLog();
         }
     }
+
+    /*ComfyJS.onCommand = ( user, command, message, flags, extra ) => {
+        if( command === "test" ) {
+          ComfyJS.Say( "replying to !test" );
+        }
+      }
+*/
 }
 
 function simulateKeyPress(x) {
