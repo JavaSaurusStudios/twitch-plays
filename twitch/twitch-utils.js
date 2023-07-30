@@ -15,6 +15,19 @@ const keys = {
     "L": 9
 };
 
+const emote_mapping = {
+    1: "A",
+    6: "B",
+    555555558: "SEL",
+    555555560: "START",
+    555555562: "RIGHT",
+    555555580: "LEFT",
+    555555587: "UP",
+    555555589: "DOWN",
+    555555593: "R",
+    555555597: "L"
+};
+
 function InitIRC() {
     const urlParams = new URL(window.location.toLocaleString()).searchParams;
     const channel = urlParams.get('channel');
@@ -22,6 +35,10 @@ function InitIRC() {
 
     if (urlParams.has('collect-time')) {
         collectionInterval = urlParams.get('collect-time') * 1000;
+    }
+
+    if (!urlParams.has('emote-mode')) {
+        document.getElementById('emoteInputTextarea').style.display='none';
     }
 
     GAME = urlParams.get('game');
@@ -35,6 +52,14 @@ function InitIRC() {
 function ActivateFunctions() {
     ComfyJS.onChat = (user, message, flags, self, extra) => {
         var input = message.toUpperCase();
+        console.log(Object.keys(extra.messageEmotes));
+        //map input by emotes
+        if (Object.keys(extra.messageEmotes).length > 0) {
+            var check = Object.keys(extra.messageEmotes)[0];
+            input = emote_mapping[check];
+        }
+
+        console.log(input);
         if (keys.hasOwnProperty(input.split("X")[0])) {
             //addToTextLog(user + " : " + input);
             //simulateKeyPress(input);
