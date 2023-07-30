@@ -35,7 +35,7 @@ function InitIRC() {
 function ActivateFunctions() {
     ComfyJS.onChat = (user, message, flags, self, extra) => {
         var input = message.toUpperCase();
-        if (keys.hasOwnProperty(input)) {
+        if (keys.hasOwnProperty(input.split("X")[0])) {
             //addToTextLog(user + " : " + input);
             //simulateKeyPress(input);
             userInputData[input]++;
@@ -53,13 +53,16 @@ function ActivateFunctions() {
 
 function simulateKeyPress(x) {
     Iodine.keyDown(keys[x]);
-    setTimeout(() => Iodine.keyUp(keys[x]), 150);
+    setTimeout(() => { Iodine.keyUp(keys[x]); ClearInputData() }, 150);
 }
 
 function simulateKeyPresses(x, amount) {
     if (amount > 0) {
-        setTimeout(() =>{
-            simulateKeyPress(x), amount--;}, 150);
+        setTimeout(() => {
+            simulateKeyPress(x), amount--;
+        }, 150);
+    } else {
+        ClearInputData();
     }
 }
 

@@ -35,16 +35,19 @@ function CollectInput() {
             mostPrevalentInput = input;
         }
     }
-
-    console.log(mostPrevalentInput + " was selected");
-    if (mostPrevalentInput.includes("X")) {
-        var baseInput = mostPrevalentInput.split("X")[0];
-        var baseAmount = mostPrevalentInput.split("X")[1];
-        simulateKeyPresses(baseInput, baseAmount);
-    } else {
-        simulateKeyPress(mostPrevalentInput);
+    if (maxCount > 0) {
+        console.log(mostPrevalentInput + " was selected");
+        if (mostPrevalentInput.includes("X")) {
+            console.log("Multi-step ");
+            var baseInput = mostPrevalentInput.split("X")[0];
+            var baseAmount = mostPrevalentInput.split("X")[1];
+            simulateKeyPresses(baseInput, baseAmount);
+        } else {
+            console.log("Single-step ");
+            simulateKeyPress(mostPrevalentInput);
+        }
     }
-    ClearInputData();
+
 }
 
 function ClearInputData() {
