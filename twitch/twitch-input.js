@@ -4,12 +4,20 @@ var userInputData = {
     "B": 0,
     "SEL": 0,
     "START": 0,
+    "R": 0,
+    "L": 0,
     "RIGHT": 0,
     "LEFT": 0,
     "UP": 0,
     "DOWN": 0,
-    "R": 0,
-    "L": 0
+    "RIGHTX2": 0,
+    "LEFTX2": 0,
+    "UPX2": 0,
+    "DOWNX2": 0,
+    "RIGHTX3": 0,
+    "LEFTX3": 0,
+    "UPX3": 0,
+    "DOWNX3": 0,
 };
 
 function InitUserInput() {
@@ -28,16 +36,14 @@ function CollectInput() {
         }
     }
 
-    if (maxCount == 0) {
-        /* var randoms = ["RIGHT", "LEFT", "UP", "DOWN", "A", "B"];
-         mostPrevalentInput = randoms[Math.floor(Math.random() * randoms.length)];
-         ClearInputData();*/
-        return
-
-    }
     console.log(mostPrevalentInput + " was selected");
-    simulateKeyPress(mostPrevalentInput);
-
+    if (input.includes("X")) {
+        var baseInput = input.split("X")[0];
+        var baseAmount = input.split("X")[1];
+        simulateKeyPresses(baseInput, baseAmount);
+    } else {
+        simulateKeyPress(mostPrevalentInput);
+    }
     ClearInputData();
 }
 

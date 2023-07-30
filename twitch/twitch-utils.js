@@ -56,13 +56,23 @@ function simulateKeyPress(x) {
     setTimeout(() => Iodine.keyUp(keys[x]), 150);
 }
 
+function simulateKeyPresses(x, amount) {
+    if (amount > 0) {
+        setTimeout(() =>{
+            simulateKeyPress(x), amount--;}, 150);
+    }
+}
+
 function updateInputTextLog() {
     var textarea = document.getElementById('scrollingTextarea');
     textarea.value = "";
     // Add the new line to the end
     let lines = [];
+    let i = 0;
     for (let k in sortValues(userInputData)) {
         lines.push(k + "\t" + userInputData[k]);
+        i++;
+        if (i == 10) break;
     }
     // Join the lines and set the updated content to the textarea
     textarea.value = lines.join('\n');
