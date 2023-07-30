@@ -41,7 +41,7 @@ function CollectInput() {
             console.log("Multi-step ");
             var baseInput = mostPrevalentInput.split("X")[0];
             var baseAmount = mostPrevalentInput.split("X")[1];
-            simulateKeyPress(baseInput, baseAmount);
+            simulateKeyPress(baseInput, 1 + baseAmount);
         } else {
             console.log("Single-step ");
             simulateKeyPress(mostPrevalentInput, 1);
