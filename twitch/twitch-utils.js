@@ -53,7 +53,7 @@ function ActivateFunctions() {
 
 function simulateKeyPress(x, amount) {
     Iodine.keyDown(keys[x]);
-    setTimeout(() => { Iodine.keyUp(keys[x]); ClearInputData() }, 150 * amount);
+    setTimeout(() => { Iodine.keyUp(keys[x]); ClearInputData() }, 40 * amount);
 }
 
 
