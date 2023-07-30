@@ -14,10 +14,19 @@ var userInputData = {
     "LEFTX2": 0,
     "UPX2": 0,
     "DOWNX2": 0,
-    "RIGHTX3": 0,
-    "LEFTX3": 0,
-    "UPX3": 0,
-    "DOWNX3": 0,
+    "RIGHTX4": 0,
+    "LEFTX4": 0,
+    "UPX4": 0,
+    "DOWNX4": 0,
+    "RIGHTX4": 0,
+    "LEFTX8": 0,
+    "UPX8": 0,
+    "DOWNX8": 0,
+    "RIGHTX8": 0,
+    "LEFTX12": 0,
+    "UPX12": 0,
+    "DOWNX12": 0,
+    "RIGHTX12": 0
 };
 
 function InitUserInput() {
