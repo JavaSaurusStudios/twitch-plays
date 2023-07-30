@@ -37,9 +37,9 @@ function CollectInput() {
     }
 
     console.log(mostPrevalentInput + " was selected");
-    if (input.includes("X")) {
-        var baseInput = input.split("X")[0];
-        var baseAmount = input.split("X")[1];
+    if (mostPrevalentInput.includes("X")) {
+        var baseInput = mostPrevalentInput.split("X")[0];
+        var baseAmount = mostPrevalentInput.split("X")[1];
         simulateKeyPresses(baseInput, baseAmount);
     } else {
         simulateKeyPress(mostPrevalentInput);
