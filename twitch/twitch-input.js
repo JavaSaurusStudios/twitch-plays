@@ -42,11 +42,12 @@ function CollectInput() {
         simulateKeyPress(mostPrevalentInput);
         ClearInputData();
     }
+}
 
-    function ClearInputData() {
+function ClearInputData() {
 
-        for (let k in userInputData) {
-            userInputData[k] = 0;
-        }
-        updateInputTextLog();
+    for (let k in userInputData) {
+        userInputData[k] = 0;
     }
+    updateInputTextLog();
+}
