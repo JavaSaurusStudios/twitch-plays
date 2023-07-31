@@ -1,6 +1,8 @@
 var GAME;
 var saveStateManager;
 let typingTimer;
+var executing;
+var LR_enabled;
 //https://twitchapps.com/tmi/
 const keys = {
     "A": 0,
@@ -41,6 +43,13 @@ function InitIRC() {
         document.getElementById('emoteInputTextarea').style.display = 'none';
     }
 
+    if (urlParams.has('LR-enabled')) {
+        LR_enabled = true;
+    }else{
+        document.getElementById('el-R').style.display = 'none';
+        document.getElementById('el-L').style.display = 'none';
+    }
+
     GAME = urlParams.get('game');
     ActivateFunctions();
     ComfyJS.Init(channel, oath);
@@ -63,7 +72,7 @@ function ActivateFunctions() {
                 count = extra.messageEmotes[key].length;
                 key = emote_mapping[key];
             }
-            input = (key + (count > 1 ? "X" + count : "")).trim();
+            input = (key + (count > 1 ? "X" + Math.min(9, count) : "")).trim();
             //WORD INPUT
         } else {
             if (input.includes("X")) {
@@ -73,7 +82,11 @@ function ActivateFunctions() {
                 key = input.split(" ")[0];
                 count = countWordInstances(input, key);
             }
-            input = (key + (count > 1 ? "X" + count : "")).trim();
+            input = (key + (count > 1 ? "X" + Math.min(9, count) : "   "));
+        }
+
+        if (!LR_enabled && (key === "R" || key === "L")) {
+            return;
         }
 
         if (userInputKeys.indexOf(key) > -1) {
@@ -84,15 +97,24 @@ function ActivateFunctions() {
         }
     }
 
-    /*ComfyJS.onCommand = ( user, command, message, flags, extra ) => {
-        if( command === "test" ) {
-          ComfyJS.Say( "replying to !test" );
+    ComfyJS.onCommand = (user, command, message, flags, extra) => {
+        if ((flags.broadcaster || flags.moderator) && command === "show-emotes") {
+            document.getElementById('emoteInputTextarea').style.display = 'block';
         }
-      }
-*/
+        if ((flags.broadcaster || flags.moderator) && command === "hide-emotes") {
+            document.getElementById('emoteInputTextarea').style.display = 'none';
+        }
+        if (command === "help") {
+            if (extra.sinceLastCommand.any > 30000) {
+
+            }
+        }
+    }
+
 }
 
 function SimulateKeyPress(x, amount) {
+    executing = true;
     Iodine.keyDown(keys[x]);
     setTimeout(() => {
         Iodine.keyUp(keys[x]);
@@ -100,9 +122,17 @@ function SimulateKeyPress(x, amount) {
         if (amount > 0) {
             SimulateKeyPress(x, amount);
         } else {
+            executing = false;
             ClearInputData();
         }
-    }, 50);
+    }, getKeyDelay(x));
+}
+
+function getKeyDelay(x) {
+    if (x === "RIGHT" || x === "LEFT" || x === "UP" || x === "DOWN") {
+        return 50;
+    }
+    return 120;
 }
 
 function simulateKeyPress2(x, amount) {
@@ -117,8 +147,8 @@ function updateInputTextLog(userInputData) {
     let lines = [];
 
     for (let k in sortValues(userInputData)) {
-        lines.push(k + "\t" + userInputData[k]);
-        if (lines.length == 10) break;
+        lines.push(k.replace("X", " x ") + "\t" + userInputData[k]);
+        if (lines.length == 25) break;
     }
     // Join the lines and set the updated content to the textarea
     textarea.value = lines.join('\n');
@@ -133,7 +163,7 @@ function addToTextLog(line) {
     // Split the textarea content into lines
     const lines = textarea.value.split('\n');
     // Add the new line to the end
-    lines.push(line);
+    lines.push(line.replace("X", " x "));
     // If the number of lines exceeds the visible rows, remove the first line
     const maxVisibleRows = Math.floor(textarea.clientHeight / 20); // Assuming each row is around 20px
     if (lines.length > maxVisibleRows) {

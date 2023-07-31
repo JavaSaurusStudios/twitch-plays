@@ -16,16 +16,16 @@ canvas {
     height: 100%;
 }
 
-table {   
+table {
     position: fixed;
     top: 15px;
     left: 15px;
     background-color: rgba(0, 0, 0, 0.1);
     border-color: rgba(0, 0, 0, 0.1);
-    width: 256px;
+    width: 220px;
     height: 356px;
     color: rgb(255, 255, 255);
-    font-size: 24px;
+    font-size: 12px;
     font-family: 'PressStart2PRegular';
     font-weight: normal;
     font-style: normal;
@@ -55,17 +55,44 @@ textarea {
     border: none;
     overflow: hidden;
     resize: none;
-    width: 256px;
-    height: 356px;
+    width: 220px;
+    height: 128px;
     position: fixed;
     left: 15px;
     bottom: 15px;
-    font-size: 24px;
+    font-size: 12px;
     font-family: 'PressStart2PRegular';
     font-weight: normal;
     font-style: normal;
     line-height: 150%;
     -webkit-text-stroke: .5px black;
+}
+
+.input-timer {
+    resize: none;
+    width: 220px;
+    height: 10px;
+    position: fixed;
+    left: 15px;
+    bottom: 142px;
+    border-color:black;
+    border-style: solid;
+    background-color: rgb(255, 255, 255)
+}
+
+.input-timer-text{
+    resize: none;
+    width: 286px;
+    height: 10px;
+    position: fixed;
+    font-size: 12px;
+    font-family: 'PressStart2PRegular';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 150%;
+    color:white;
+    -webkit-text-stroke: .75px black;
+    bottom: 164px;
 }
 
 /* CSS to style the text area and the fade-out effect */

@@ -72,61 +72,67 @@
     <canvas id="emulator_target" width="240px" height="160px">
     </canvas>
     <span id="tempMessage"></span>
-    <textarea id="scrollingTextarea"></textarea>
     <div class="emoteInputTextarea" id="emoteInputTextarea">
         <table>
             <tr>
-                <td>A</td>
-                <td>=</td><td></td>
-                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/1/default/light/2.0"></td>
+                <td style="width:64px">A</td>
+                <td style="width:24px">=</td>
+                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/1/default/light/1.0"></td>
             </tr>
             <tr>
                 <td>B</td>
-                <td>=</td><td></td>
-                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/6/default/light/2.0"></td>
+                <td>=</td>
+                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/6/default/light/1.0"></td>
             </tr>
             <tr>
                 <td>SEL</td>
-                <td>=</td><td></td>
-                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/555555558/default/light/2.0"></td>
+                <td>=</td>
+                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/555555558/default/light/1.0"></td>
             </tr>
             <tr>
                 <td>START</td>
-                <td>=</td><td></td>
-                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/555555560/default/light/2.0"></td>
+                <td>=</td>
+                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/555555560/default/light/1.0"></td>
             </tr>
             <tr>
                 <td>RIGHT</td>
-                <td>=</td><td></td>
-                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/555555562/default/light/2.0"></td>
+                <td>=</td>
+                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/555555562/default/light/1.0"></td>
             </tr>
             <tr>
                 <td>LEFT</td>
-                <td>=</td><td></td>
-                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/555555580/default/light/2.0"></td>
+                <td>=</td>
+                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/555555580/default/light/1.0"></td>
             </tr>
             <tr>
                 <td>UP</td>
-                <td>=</td><td></td>
-                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/555555587/default/light/2.0"></td>
+                <td>=</td>
+                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/555555587/default/light/1.0"></td>
             </tr>
             <tr>
                 <td>DOWN</td>
-                <td>=</td><td></td>
-                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/555555589/default/light/2.0"></td>
+                <td>=</td>
+                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/555555589/default/light/1.0"></td>
             </tr>
-            <tr>
+            <tr id="el-R">
                 <td>R</td>
-                <td>=</td><td></td>
-                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/555555593/default/light/2.0"></td>
+                <td>=</td>
+                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/555555593/default/light/1.0"></td>
             </tr>
-            <tr>
+            <tr id="el-L">
                 <td>L</td>
-                <td>=</td><td></td>
-                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/555555597/default/light/2.0"></td>
+                <td>=</td>
+                <td><img src="https://static-cdn.jtvnw.net/emoticons/v2/555555597/default/light/1.0"></td>
             </tr>
         </table>
 
+    </div>
+    <div>
+
+        <div id="input-timer" class="input-timer">
+            <div id="input-timer-text" class="input-timer-text">Next move in :</div>
+        </div>
+        <textarea id="scrollingTextarea"></textarea>
     </div>
 </body>
 
