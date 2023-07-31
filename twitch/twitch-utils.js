@@ -45,7 +45,7 @@ function InitIRC() {
 
     if (urlParams.has('LR-enabled')) {
         LR_enabled = true;
-    }else{
+    } else {
         document.getElementById('el-R').style.display = 'none';
         document.getElementById('el-L').style.display = 'none';
     }
@@ -101,13 +101,23 @@ function ActivateFunctions() {
         if ((flags.broadcaster || flags.moderator) && command === "show-emotes") {
             document.getElementById('emoteInputTextarea').style.display = 'block';
         }
+
         if ((flags.broadcaster || flags.moderator) && command === "hide-emotes") {
             document.getElementById('emoteInputTextarea').style.display = 'none';
         }
-        if (command === "help") {
-            if (extra.sinceLastCommand.any > 30000) {
 
-            }
+        if (!LR_enabled && ((flags.broadcaster || flags.moderator) && command === "lr-on")) {
+            document.getElementById('el-R').style.display = 'block';
+            document.getElementById('el-L').style.display = 'block';
+            LR_enabled = true;
+            writeRedTemporaryText("L and R buttons are now enabled");
+        }
+
+        if (LR_enabled && ((flags.broadcaster || flags.moderator) && command === "lr-off")) {
+            document.getElementById('el-R').style.display = 'none';
+            document.getElementById('el-L').style.display = 'none';
+            LR_enabled = false;
+            writeRedTemporaryText("L and R buttons are now disabled");
         }
     }
 
