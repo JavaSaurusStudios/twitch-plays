@@ -38,7 +38,7 @@ function InitIRC() {
     }
 
     if (!urlParams.has('emote-mode')) {
-        document.getElementById('emoteInputTextarea').style.display='none';
+        document.getElementById('emoteInputTextarea').style.display = 'none';
     }
 
     GAME = urlParams.get('game');
@@ -52,19 +52,35 @@ function InitIRC() {
 function ActivateFunctions() {
     ComfyJS.onChat = (user, message, flags, self, extra) => {
         var input = message.toUpperCase();
-        console.log(Object.keys(extra.messageEmotes));
+
         //map input by emotes
-        if (Object.keys(extra.messageEmotes).length > 0) {
-            var check = Object.keys(extra.messageEmotes)[0];
-            input = emote_mapping[check];
+        var key;
+        var count = 1;
+        //EMOTE INPUT
+        if (extra.messageEmotes) {
+            key = Object.keys(extra.messageEmotes)[0];
+            if (emote_mapping.hasOwnProperty(key)) {
+                count = extra.messageEmotes[key].length;
+                key = emote_mapping[key];
+            }
+            input = (key + (count > 1 ? "X" + count : "")).trim();
+            //WORD INPUT
+        } else {
+            if (input.includes("X")) {
+                key = Object.keys(input.split("X")[0])[0];
+                count = Object.keys(input.split("X")[0])[1];
+            } else {
+                key = input.split(" ")[0];
+                count = countWordInstances(input, key);
+            }
+            input = (key + (count > 1 ? "X" + count : "")).trim();
         }
 
-        console.log(input);
-        if (keys.hasOwnProperty(input.split("X")[0])) {
-            //addToTextLog(user + " : " + input);
-            //simulateKeyPress(input);
-            userInputData[input]++;
-            updateInputTextLog();
+        if (userInputKeys.indexOf(key) > -1) {
+            console.log("Detected " + key + " " + count + " times --> " + input);
+            userInputData[input] = (userInputData.hasOwnProperty(key) ? userInputData[input] : 0) + 1;
+            console.log(userInputData);
+            updateInputTextLog(userInputData);
         }
     }
 
@@ -76,22 +92,33 @@ function ActivateFunctions() {
 */
 }
 
-function simulateKeyPress(x, amount) {
+function SimulateKeyPress(x, amount) {
     Iodine.keyDown(keys[x]);
-    setTimeout(() => { Iodine.keyUp(keys[x]); ClearInputData() }, 40 * amount);
+    setTimeout(() => {
+        Iodine.keyUp(keys[x]);
+        amount--;
+        if (amount > 0) {
+            SimulateKeyPress(x, amount);
+        } else {
+            ClearInputData();
+        }
+    }, 50);
 }
 
+function simulateKeyPress2(x, amount) {
+    Iodine.keyDown(keys[x]);
+    setTimeout(() => { Iodine.keyUp(keys[x]); ClearInputData() }, 100 * amount);
+}
 
-function updateInputTextLog() {
+function updateInputTextLog(userInputData) {
     var textarea = document.getElementById('scrollingTextarea');
     textarea.value = "";
     // Add the new line to the end
     let lines = [];
-    let i = 0;
+
     for (let k in sortValues(userInputData)) {
         lines.push(k + "\t" + userInputData[k]);
-        i++;
-        if (i == 10) break;
+        if (lines.length == 10) break;
     }
     // Join the lines and set the updated content to the textarea
     textarea.value = lines.join('\n');
@@ -151,4 +178,9 @@ function sortValues(toSort) {
 
 }
 
+function countWordInstances(str, word) {
+    const regex = new RegExp('\\b' + word + '\\b', 'gi');
+    const matches = str.match(regex);
+    return matches ? matches.length : 0;
+}
 
