@@ -1,4 +1,4 @@
-var GAME;
+var GAME = "pokemonred";
 var saveStateManager;
 let typingTimer;
 var executing;
@@ -50,7 +50,12 @@ function InitIRC() {
         document.getElementById('el-L').style.display = 'none';
     }
 
-    GAME = urlParams.get('game');
+    if (urlParams.has('game')) {
+        GAME = urlParams.get('game');
+    } else {
+        GAME = 'pokemonred';
+    }
+
     ActivateFunctions();
     ComfyJS.Init(channel, oath);
     initEmulator();
@@ -59,7 +64,7 @@ function InitIRC() {
 
 
     //set the title
-    document.title=channel+"'s game";
+    document.title = channel + "'s game";
 }
 
 function ActivateFunctions() {
