@@ -107,6 +107,9 @@ function ActivateFunctions() {
     }
 
     ComfyJS.onCommand = (user, command, message, flags, extra) => {
+
+        console.log(command);
+
         if ((flags.broadcaster || flags.moderator) && command === "show-emotes") {
             document.getElementById('emoteInputTextarea').style.display = 'block';
         }
@@ -120,6 +123,7 @@ function ActivateFunctions() {
             const urlParams = new URL(window.location.toLocaleString()).searchParams;
             var parameters = Array.from(urlParams.entries());
             var newURL = "https://javasaurusstudios.github.io/twitch-plays/?";
+
             parameters.forEach((x) => {
                 if (x[0] === "game") {
                     newURL += "game=" + message;
@@ -128,7 +132,11 @@ function ActivateFunctions() {
                 }
                 newURL += "&"
             });
-            newURL = newURL.substring(0, newURL.length - 1);
+            if (!urlParams.has('game')) {
+                newURL += "game=" + message;
+            } else {
+                newURL = newURL.substring(0, newURL.length - 1);
+            }
             console.log(newURL);
             window.location.href = (newURL);
         }
