@@ -115,6 +115,24 @@ function ActivateFunctions() {
             document.getElementById('emoteInputTextarea').style.display = 'none';
         }
 
+        if ((flags.broadcaster || flags.moderator) && command === "playgame") {
+            console.log(message);
+            const urlParams = new URL(window.location.toLocaleString()).searchParams;
+            var parameters = Array.from(urlParams.entries());
+            var newURL = "https://javasaurusstudios.github.io/twitch-plays/?";
+            parameters.forEach((x) => {
+                if (x[0] === "game") {
+                    newURL += "game=" + message;
+                } else {
+                    newURL += x[0] + "=" + x[1];
+                }
+                newURL += "&"
+            });
+            newURL = newURL.substring(0, newURL.length - 1);
+            console.log(newURL);
+            window.location.href = (newURL);
+        }
+
         if (!LR_enabled && ((flags.broadcaster || flags.moderator) && command === "lr-on")) {
             document.getElementById('el-R').style.display = 'block';
             document.getElementById('el-L').style.display = 'block';
