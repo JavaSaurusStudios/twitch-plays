@@ -56,6 +56,10 @@ function InitIRC() {
     initEmulator();
     saveStateManager = new SaveStateManager(Iodine);
     InitUserInput();
+
+
+    //set the title
+    document.title=channel+"'s game";
 }
 
 function ActivateFunctions() {
