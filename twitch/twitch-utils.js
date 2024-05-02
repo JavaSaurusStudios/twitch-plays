@@ -160,6 +160,7 @@ function ActivateFunctions() {
 
 function SimulateKeyPress(x, amount) {
     executing = true;
+    console.log("Simulating keys[x]");
     Iodine.keyDown(keys[x]);
     setTimeout(() => {
         Iodine.keyUp(keys[x]);
