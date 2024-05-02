@@ -30,6 +30,31 @@ const emote_mapping = {
     555555597: "L"
 };
 
+function ConvertStringToInteger(x){
+ switch(x.toUpperCase()){
+          case "A": inputInteger= 0;
+            break;
+               case "B": inputInteger= 1;
+            break;
+               case "SEL": inputInteger= 2;
+            break;
+               case "START": inputInteger= 3;
+            break;
+               case "RIGHT": inputInteger= 4;
+            break;
+               case "LEFT": inputInteger= 5;
+            break;
+               case "UP": inputInteger= 6;
+            break;
+               case "DOWN": inputInteger= 7;
+            break;
+              break;
+               case "R": inputInteger= 8;
+            break;
+               case "L": inputInteger= 9;
+            break;
+}
+
 function InitIRC() {
     const urlParams = new URL(window.location.toLocaleString()).searchParams;
     const channel = urlParams.get('channel');
