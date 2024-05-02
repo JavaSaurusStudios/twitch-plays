@@ -31,29 +31,19 @@ const emote_mapping = {
 };
 
 function ConvertStringToInteger(x){
- switch(x.toUpperCase()){
-          case "A": inputInteger= 0;
-            break;
-               case "B": inputInteger= 1;
-            break;
-               case "SEL": inputInteger= 2;
-            break;
-               case "START": inputInteger= 3;
-            break;
-               case "RIGHT": inputInteger= 4;
-            break;
-               case "LEFT": inputInteger= 5;
-            break;
-               case "UP": inputInteger= 6;
-            break;
-               case "DOWN": inputInteger= 7;
-            break;
-              break;
-               case "R": inputInteger= 8;
-            break;
-               case "L": inputInteger= 9;
-            break;
-}
+var check = x.trim().toUpperCase();
+var inputInteger=-1;
+if(check==="A"){ inputInteger= 0;}
+if(check==="B"){ inputInteger= 1;}
+if(check==="SEL"){ inputInteger= 2;}
+if(check==="START"){ inputInteger= 3;}
+if(check==="RIGHT"){ inputInteger= 4;}
+if(check==="LEFT"){ inputInteger= 5;}
+if(check==="UP"){ inputInteger= 6;}
+if(check==="DOWN"){ inputInteger= 7;}
+if(check==="R"){ inputInteger= 8;}
+if(check==="L"){ inputInteger= 9;}
+return inputInteger;
 }
 
 function InitIRC() {
