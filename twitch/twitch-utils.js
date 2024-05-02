@@ -184,11 +184,12 @@ function ActivateFunctions() {
 }
 
 function SimulateKeyPress(x, amount) {
+    var inputKey =ConvertStringToInteger(x);  
     executing = true;
-    console.log("Simulating keys[x]");
-    Iodine.keyDown(keys[x]);
+    console.log("Simulating"+ x +"--> "+inputKey);
+    Iodine.keyDown(inputKey);
     setTimeout(() => {
-        Iodine.keyUp(keys[x]);
+        Iodine.keyUp(inputKey);
         amount--;
         if (amount > 0) {
             SimulateKeyPress(x, amount);
