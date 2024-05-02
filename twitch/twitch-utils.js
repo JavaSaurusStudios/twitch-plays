@@ -43,6 +43,7 @@ if(check==="UP"){ inputInteger= 6;}
 if(check==="DOWN"){ inputInteger= 7;}
 if(check==="R"){ inputInteger= 8;}
 if(check==="L"){ inputInteger= 9;}
+console.log(check+" matched "+ inputInteger);
 return inputInteger;
 }
 
