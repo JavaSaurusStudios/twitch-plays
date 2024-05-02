@@ -54,6 +54,7 @@ function ConvertStringToInteger(x){
                case "L": inputInteger= 9;
             break;
 }
+}
 
 function InitIRC() {
     const urlParams = new URL(window.location.toLocaleString()).searchParams;
