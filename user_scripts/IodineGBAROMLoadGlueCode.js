@@ -60,7 +60,7 @@ function fileLoadROM() {
 function downloadFile(fileName, registrationHandler) {
     var ajax = new XMLHttpRequest();
     ajax.onload = registrationHandler;
-    ajax.open("GET", "https://javasaurusstudios.github.io/twitch-plays/" + fileName, true);
+    ajax.open("GET", "https://javasaurus.dev/twitch-plays/" + fileName, true);
     ajax.responseType = "arraybuffer";
     ajax.overrideMimeType("text/plain; charset=x-user-defined");
     ajax.send(null);
