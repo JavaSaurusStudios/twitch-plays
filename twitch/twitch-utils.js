@@ -139,7 +139,7 @@ function ActivateFunctions() {
             console.log(message);
             const urlParams = new URL(window.location.toLocaleString()).searchParams;
             var parameters = Array.from(urlParams.entries());
-            var newURL = "https://javasaurusstudios.github.io/twitch-plays/?";
+            var newURL = "https://javasaurus.dev/twitch-plays/?";
 
             parameters.forEach((x) => {
                 if (x[0] === "game") {
@@ -277,4 +277,5 @@ function countWordInstances(str, word) {
     const matches = str.match(regex);
     return matches ? matches.length : 0;
 }
+
 
